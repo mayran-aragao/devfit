@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 
+
 import NextButton from '../components/NextButton';
+
 
 const Container = styled.SafeAreaView`
     flex:1;
@@ -16,6 +18,10 @@ const HeaderText = styled.Text`
     color:#333;
     margin-top:50px;
     margin-bottom:50px;
+`;
+const NextButtonText = styled.Text`
+    font-size:17px;
+    color:#0072c0;
 `;
 const NameInput = styled.TextInput`
     border:1px solid #CCC;
@@ -57,18 +63,18 @@ const Page = (props) => {
 }
 
 Page.navigationOptions = ({navigation}) =>{
-
+    
     const nextAction = () => {
-        if(!navigation.state.params || !navigation.state.params.name){
+        if(!navigation.state.params || !navigation.state.params.name ){
             alert("Você precisa digitar um nome");
+            return
         }
         navigation.navigate('StarterDias');
     }
-
     return{
         headerShown:true,
         title:'',
-        headerRight:()=><NextButton navigation={navigation} />,
+        headerRight:()=><NextButton onPress={nextAction}><NextButtonText>Proximo</NextButtonText></NextButton>,
     }
 }
 
