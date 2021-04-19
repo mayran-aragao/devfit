@@ -7,24 +7,22 @@ import NextButton from '../components/NextButton';
 const Container = styled.SafeAreaView`
     flex:1;
     align-items:center;
-    
+    margin-top:50px;
     margin-left:30px;
     margin-right:30px;
 `;
 const HeaderText = styled.Text`
-    font-size:22px;
+    font-size:15px;
     color:#333;
-    margin-top:50px;
-    margin-bottom:50px;
+    text-align:center;
+    margin-bottom:30px;
 `;
-const NameInput = styled.TextInput`
-    border:1px solid #CCC;
-    width:100%;
-    height:50px;
-    border-radius:10px;
-    font-size:16px;
-    padding:10px;
+const BoldText = styled.Text`
+    font-weight:bold;
 `;
+
+
+
 
 const Page = (props) => {
 
@@ -41,37 +39,29 @@ const Page = (props) => {
         props.setName(t);
         props.navigation.setParams({name:t});
     }
+    let firstName = props.name.split(' ')[0];
 
     return(
         <Container>
-            <HeaderText>Qual é seu nome?</HeaderText>
-            <NameInput
-                value={props.name}
-                onChangeText={handleChangeName}
-                autoFocus={true}
-                autoCapitalize="words"
-                onSubmitEditing={nextAction}
-            />
+            <HeaderText>Olá,<BoldText> {firstName} </BoldText>, tudo bem?</HeaderText>
+            <HeaderText>Quais <BoldText>dias da semana</BoldText> você pretende treinar?</HeaderText>
+            
         </Container>
     );
 }
 
 Page.navigationOptions = ({navigation}) =>{
 
-    const nextAction = () => {
-        if(!navigation.state.params || !navigation.state.params.name){
-            alert("Você precisa digitar um nome");
-        }
-        navigation.navigate('StarterDias');
-    }
 
     return{
         headerShown:true,
         title:'',
-        headerRight:()=><NextButton navigation={navigation} />,
+        headerRight:()=><NextButton navigation={navigation}/>,
+        headerRightContainerStyle:{
+            marginRight:10
+        }
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {
