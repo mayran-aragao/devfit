@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 
@@ -52,6 +52,12 @@ const Page = (props) => {
         props.navigation.setParams({workoutDays:newWorkoutDays});
     }
     
+    useEffect( ( ) => {
+        if( props.navigation.state.params = "undefined" && props.workoutDays !== null ){
+           props.navigation.setParams({workoutDays:props.workoutDays})
+         }
+    },[]);
+
     let firstName = props.name.split(' ')[0];
 
     return(

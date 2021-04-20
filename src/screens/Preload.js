@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const Preload = (props) => {
     // TEMPORARIO
-    props.navigation.dispatch(StackActions.reset({
+   props.navigation.dispatch(StackActions.reset({
         index:0,
         actions:[
             NavigationActions.navigate({routeName:'StarterStack'})

@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 
 
 import NextButton from '../components/NextButton';
+
 
 
 const Container = styled.SafeAreaView`
@@ -47,6 +48,12 @@ const Page = (props) => {
         props.setName(t);
         props.navigation.setParams({name:t});
     }
+
+    useEffect( ( ) => {
+        if( props.navigation.state.params = "undefined" && props.name !== null ){
+           props.navigation.setParams({name:props.name})
+         }
+    },[]);
 
     return(
         <Container>
