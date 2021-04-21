@@ -18,7 +18,7 @@
     "id":"645",
     "name":"Treino Iniciante C",
     "exercises":[
-      {"id":1, "name":"Supino Inclinado", "muscle":"chest", "sets":"3", "reps":"10", "load":"20"}
+      {"id":1, "name":"Supino Inclinado", "muscle":"gluteos", "sets":"3", "reps":"10", "load":"20"}
     ]
   }
 ]
