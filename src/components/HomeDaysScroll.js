@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
-import {Text} from 'react-native';
+
 
 const DaysScroll = styled.ScrollView`
     width:100%;
@@ -87,6 +87,7 @@ export default (props) => {
     const scrollToDay = (d) =>{
         let posX = (d-1)*dayW;
         DayRef.current.scrollTo({x:posX,y:0, animated:true});
+        setSelectedDay(d);
     }
 
     useEffect(()=>{
