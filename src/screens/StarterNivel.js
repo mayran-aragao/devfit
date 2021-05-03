@@ -78,9 +78,9 @@ const Page = (props) => {
             <HeaderText>{funnyPhrase}</HeaderText>
             <HeaderText><BoldText>Qual seu nível hoje?</BoldText></HeaderText>
             <LevelArea>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='beginner'?'#a5e8bc':false} onPress={()=>setMyLevel('beginner')} style={{marginBottom:20}}><LevelText txcolor={props.level=='beginner'?'#FFF':false}>Iniciante / Um Frango</LevelText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='intermediate'?'#a5e8bc':false} onPress={()=>setMyLevel('intermediate')}  style={{marginBottom:20}}><LevelText txcolor={props.level=='intermediate'?'#FFF':false}>Intermediario / Me viro bem</LevelText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='advanced'?'#a5e8bc':false} onPress={()=>setMyLevel('advanced')}  style={{marginBottom:20}}><LevelText txcolor={props.level=='advanced'?'#FFF':false}>Avançado / Rato de Academia</LevelText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='beginner'?'#6A5ACD':false} onPress={()=>setMyLevel('beginner')} style={{marginBottom:20}}><LevelText txcolor={props.level=='beginner'?'#FFF':false}>Iniciante / Um Frango</LevelText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='intermediate'?'#6A5ACD':false} onPress={()=>setMyLevel('intermediate')}  style={{marginBottom:20}}><LevelText txcolor={props.level=='intermediate'?'#FFF':false}>Intermediario / Me viro bem</LevelText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.level=='advanced'?'#6A5ACD':false} onPress={()=>setMyLevel('advanced')}  style={{marginBottom:20}}><LevelText txcolor={props.level=='advanced'?'#FFF':false}>Avançado / Rato de Academia</LevelText></DefaultButton>
             </LevelArea>
             
         </Container>

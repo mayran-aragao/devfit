@@ -65,13 +65,13 @@ const Page = (props) => {
             <HeaderText>Olá,<BoldText> {firstName} </BoldText>, tudo bem?</HeaderText>
             <HeaderText>Quais <BoldText>dias da semana</BoldText> você pretende treinar?</HeaderText>
             <DaysArea>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(0)?'#a5e8bc':false} onPress={()=>toggleDay(0)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(0)?'#FFF':false}>Domingo</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(1)?'#a5e8bc':false} onPress={()=>toggleDay(1)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(1)?'#FFF':false}>Segunda</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(2)?'#a5e8bc':false} onPress={()=>toggleDay(2)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(2)?'#FFF':false}>Terça</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(3)?'#a5e8bc':false} onPress={()=>toggleDay(3)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(3)?'#FFF':false}>Quarta</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(4)?'#a5e8bc':false} onPress={()=>toggleDay(4)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(4)?'#FFF':false}>Quinta</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(5)?'#a5e8bc':false} onPress={()=>toggleDay(5)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(5)?'#FFF':false}>Sexta</DaysText></DefaultButton>
-                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(6)?'#a5e8bc':false} onPress={()=>toggleDay(6)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(6)?'#FFF':false}>Sabado</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(0)?'#6A5ACD':false} onPress={()=>toggleDay(0)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(0)?'#FFF':false}>Domingo</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(1)?'#6A5ACD':false} onPress={()=>toggleDay(1)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(1)?'#FFF':false}>Segunda</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(2)?'#6A5ACD':false} onPress={()=>toggleDay(2)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(2)?'#FFF':false}>Terça</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(3)?'#6A5ACD':false} onPress={()=>toggleDay(3)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(3)?'#FFF':false}>Quarta</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(4)?'#6A5ACD':false} onPress={()=>toggleDay(4)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(4)?'#FFF':false}>Quinta</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(5)?'#6A5ACD':false} onPress={()=>toggleDay(5)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(5)?'#FFF':false}>Sexta</DaysText></DefaultButton>
+                <DefaultButton  underlayColor="#BBB" bgcolor={props.workoutDays.includes(6)?'#6A5ACD':false} onPress={()=>toggleDay(6)} width="100px" style={{marginBottom:20}}><DaysText txcolor={props.workoutDays.includes(6)?'#FFF':false}>Sabado</DaysText></DefaultButton>
             </DaysArea>
             
         </Container>

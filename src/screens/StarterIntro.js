@@ -43,7 +43,7 @@ const Page = (props) => {
         <Container>
             <WelcomeText>Bem vindo(a) ao DevFit</WelcomeText>
             <WelcomeImage>
-                <WelcomeLogo source={require('../assets/boneco.png')}/>
+                <WelcomeLogo source={require('../assets/workout.png')}/>
             </WelcomeImage>
             <BeginConfigArea>
                 <DefaultButton width="100%" bgcolor="#0072c0" underlayColor="#0b7ac6" onPress={start}>

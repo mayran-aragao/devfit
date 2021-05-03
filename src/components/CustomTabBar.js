@@ -23,7 +23,7 @@ const TabImage = styled.Image`
 const TabBall = styled.TouchableHighlight`
     width:100px;
     height:100px;
-    background-color:#3BA237;
+    background-color:#6A5ACD;
     border-radius:50px;
     justify-content:center;
     align-items:center;
@@ -49,7 +49,7 @@ export default (props) => {
                         </TabRegular>
                     }
                     {item.type == 'big' &&
-                        <TabBall underlayColor="#00ff00" onPress={()=>props.navigation.navigate(item.route)}>
+                        <TabBall underlayColor="#191970" onPress={()=>props.navigation.navigate(item.route)}>
                             <TabBallImage source={item.icon}/>
                         </TabBall>
                     }
