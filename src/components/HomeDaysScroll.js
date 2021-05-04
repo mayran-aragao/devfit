@@ -39,7 +39,7 @@ const Day = ({day,month,dailyProgress,workoutDays,onPress}) => {
 
     let thisDate = new Date(today.getFullYear(),month,day);
 
-    if(workoutDays.includes(thisDate.getDay() )){
+    if(workoutDays.includes(thisDate.getDay())){
 
         if(thisDate.getTime() < today.getTime()){
             let thisYear = thisDate.getFullYear();
@@ -57,7 +57,8 @@ const Day = ({day,month,dailyProgress,workoutDays,onPress}) => {
         }
 
     }else{
-        opacity=0.2;
+        opacity=0.3;
+        
     }
 
     if(thisDate.getTime() == today.getTime()){

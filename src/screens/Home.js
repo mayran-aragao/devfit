@@ -87,7 +87,7 @@ const Page = (props) => {
                     <LegendText>Dia futuro</LegendText>
                 </LegendItem>
                 <LegendItem>
-                    <LegendBox style={{backgroundColor:'#000',opacity:0.2}}></LegendBox>
+                    <LegendBox style={{backgroundColor:'#A9A9A9',opacity:0.2}}></LegendBox>
                     <LegendText>Dia de descanso</LegendText>
                 </LegendItem>
             </Legend>
@@ -113,7 +113,7 @@ Page.navigationOptions = ({navigation}) =>{
             navigation.navigate('HomeConfig');
         }
         return(
-            <ConfigButtonArea onPress={btnAction}>
+            <ConfigButtonArea onPress={btnAction} underlayColor = "transparent">
                 <ConfigButtonImage source={require('../assets/config.png')}/>
             </ConfigButtonArea>
         );

@@ -113,9 +113,6 @@ export default (props) => {
                 {dayOff &&
                     <>
                     <BalloonBigText>Dia de Descanso!</BalloonBigText>
-                    <DefaultButton onPress={setDone} underlayColor="#191970" bgcolor= "#6A5ACD" style={{marginTop:20}}>
-                        <ButtonText >MARCAR FEITO</ButtonText>
-                    </DefaultButton>
                     </>
                 }
                 {isFuture &&
