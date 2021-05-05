@@ -45,52 +45,67 @@ const LevelItem = styled.TouchableHighlight`
 const LevelItemText = styled.Text``;
 
 const Page = (props) => {
-    const nextAction = () => {
+    const nameAction = () => {
         if(!props.name){
-            alert("Você precisa digitar um nome");
-            return
+            alert('Você precisa digitar um nome!')
         }
+    }
+    const nextAction = (d) => {
+        let newWorkoutDays = [...props.workoutDays];
+        if(newWorkoutDays.includes(d)) {
+            
+            if(newWorkoutDays.length == 1) {
+                alert('Você precisa treinar pelo menos 1 dia.');
+                return;
+            }
+            newWorkoutDays = newWorkoutDays.filter(i=>i!=d);
+            
+        }else {
+            newWorkoutDays.push(d);
+        }
+        props.setWorkoutDays(newWorkoutDays);
+        console.log({newWorkoutDays});
     }
 
     return(
         <Container>
             <Label>Seu nome completo:</Label>
-            <Input value={props.name} onChangeText={e=>props.setName(e)} onSubmitEditing={nextAction} />   
+            <Input value={props.name} onChangeText={e=>props.setName(e)} onSubmitEditing={nameAction} />   
 
             <Label>Dias de treinamento:</Label>
             <ListArea>
-                <DayItem style={props.workoutDays.includes(1)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(1)}  style={props.workoutDays.includes(1)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>S</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(2)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(2)} style={props.workoutDays.includes(2)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>T</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(3)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(3)} style={props.workoutDays.includes(3)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>Q</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(4)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(4)} style={props.workoutDays.includes(4)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>Q</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(5)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(5)} style={props.workoutDays.includes(5)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>S</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(6)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(6)} style={props.workoutDays.includes(6)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>S</DayItemText>
                 </DayItem>
-                <DayItem style={props.workoutDays.includes(0)?{backgroundColor:'#6A5ACD'}:{}}>
+                <DayItem underlayColor="transparent" onPress={()=>nextAction(0)} style={props.workoutDays.includes(0)?{backgroundColor:'#6A5ACD'}:{}}>
                     <DayItemText>D</DayItemText>
                 </DayItem>
             </ListArea>
 
             <Label>Seu nível:</Label>
             <ListArea>
-                <LevelItem>
+                <LevelItem onPress={()=>props.setLevel('beginner')} underlayColor="transparent" style={props.level=='beginner'?{backgroundColor:'#6A5ACD'}:{}}>
                     <LevelItemText>Iniciante</LevelItemText>
                 </LevelItem>
-                <LevelItem>
+                <LevelItem onPress={()=>props.setLevel('intermediate')} underlayColor="transparent" style={props.level=='intermediate'?{backgroundColor:'#6A5ACD'}:{}}>
                     <LevelItemText>Intermediário</LevelItemText>
                 </LevelItem>
-                <LevelItem>
+                <LevelItem onPress={()=>props.setLevel('advanced')} underlayColor="transparent" style={props.level=='advanced'?{backgroundColor:'#6A5ACD'}:{}}>
                     <LevelItemText>Avançado</LevelItemText>
                 </LevelItem>
             </ListArea>      
@@ -120,7 +135,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
        setName:(name)=>dispatch({type:'SET_NAME',payload:{name}}),
-       setWorkoutDays:(WorkoutDays)=>dispatch({type:'SET_WORKOUTDAYS',payload:{WorkoutDays}}),
+       setWorkoutDays:(workoutDays)=>dispatch({type:'SET_WORKOUTDAYS',payload:{workoutDays}}),
        setLevel:(level)=>dispatch({type:'SET_LEVEL',payload:{level}}),
     }
 }
