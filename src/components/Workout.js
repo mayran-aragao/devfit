@@ -8,6 +8,7 @@ const Workout = styled.View`
     border-radius:10px;
     margin-bottom:20px;
     border:2px solid #DDD;
+    elevation:10;
 `;
 const WorkoutInfo = styled.View`
     flex:1;
@@ -68,6 +69,9 @@ export default (props) => {
     const delWorkout = () => {
         props.delAction();
     }
+    const goWorkout = () => {
+        props.goAction();
+    }
     
 
     return(
@@ -96,6 +100,11 @@ export default (props) => {
                 {props.delAction &&
                     <WorkoutButton onPress={()=>delWorkout()} underlayColor="transparent">
                         <WorkoutButtonImage source={require('../assets/trash-black.png')}  />
+                    </WorkoutButton>
+                }
+                {props.goAction &&
+                    <WorkoutButton onPress={()=>goWorkout()} underlayColor="transparent">
+                        <WorkoutButtonImage source={require('../assets/play-black.png')}  />
                     </WorkoutButton>
                 }
             </WorkoutActions>

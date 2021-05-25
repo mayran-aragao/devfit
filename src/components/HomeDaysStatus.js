@@ -37,6 +37,7 @@ const BalloonText = styled.Text`
 `
 
 export default (props) => {
+
     let today = new Date();
     today.setHours(0);
     today.setMinutes(0);
@@ -78,8 +79,11 @@ export default (props) => {
     }
     const setUnDone = () => {
         props.delProgress(dFormated);
+        
     }
+
     const [timeLeft, setTimeLeft] = useState('');
+
     useEffect(()=>{
         const timerFunction = () => {
             let now = Date.now();
@@ -121,7 +125,7 @@ export default (props) => {
                 {!dayOff && !isFuture && isDone &&
                     <>
                     <BalloonBigText>Treino realizado</BalloonBigText>
-                    <DefaultButton onPress={setUnDone} underlayColor="#191970" bgcolor= "#6A5ACD" style={{marginTop:20}}>
+                    <DefaultButton onPress={()=>setUnDone()} underlayColor="#191970" bgcolor= "#6A5ACD" style={{marginTop:20}}>
                         <ButtonText>DESMARCAR</ButtonText>
                     </DefaultButton>
                     </>

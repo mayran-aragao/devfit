@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
+import { StackActions, NavigationActions } from 'react-navigation';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
+import { Alert } from "react-native";
 
 const Container = styled.SafeAreaView`
     flex:1;
@@ -44,6 +46,15 @@ const LevelItem = styled.TouchableHighlight`
 `;
 const LevelItemText = styled.Text``;
 
+const ResetButton = styled.TouchableHighlight`
+    background-color:#FF0000;
+    height:30px;
+    border-radius:5px;
+    justify-content:center;
+    align-items:center;
+    padding: 0 15px;
+`;
+
 const Page = (props) => {
     const nameAction = () => {
         if(!props.name){
@@ -66,7 +77,38 @@ const Page = (props) => {
         props.setWorkoutDays(newWorkoutDays);
         console.log({newWorkoutDays});
     }
-
+    const resetAction = () => {
+        props.reset();
+        const resetAction = StackActions.reset({
+            index:0,
+            actions:[
+                NavigationActions.navigate({routeName:'StarterStack'})
+            ]
+        });
+        props.navigation.dispatch(resetAction);
+    }
+    const resetConfirmation = () =>
+    Alert.alert(
+        "Deseja resetar tudo ?",
+        "Você resetará sua conta e voltará do inicio",
+        [
+          {
+            text: "Cancel",
+            onPress: () => {},
+            style: "cancel",
+          },
+          {
+            text: "Resetar",
+            onPress: resetAction,
+            
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () =>{}
+        }
+      );
+        
     return(
         <Container>
             <Label>Seu nome completo:</Label>
@@ -109,6 +151,12 @@ const Page = (props) => {
                     <LevelItemText>Avançado</LevelItemText>
                 </LevelItem>
             </ListArea>      
+            
+            <Label>Você deseja resetar a conta?</Label>
+            <ResetButton onPress={resetConfirmation}>
+                <LevelItemText style={{color:"#FFF"}}>Resetar Tudo</LevelItemText>
+            </ResetButton>
+            
         </Container>
     );
 }
@@ -137,6 +185,7 @@ const mapDispatchToProps = (dispatch) => {
        setName:(name)=>dispatch({type:'SET_NAME',payload:{name}}),
        setWorkoutDays:(workoutDays)=>dispatch({type:'SET_WORKOUTDAYS',payload:{workoutDays}}),
        setLevel:(level)=>dispatch({type:'SET_LEVEL',payload:{level}}),
+       reset:()=>dispatch({type:'RESET'}),
     }
 }
 

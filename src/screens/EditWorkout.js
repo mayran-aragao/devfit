@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState , useEffect} from 'react';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import DefaultButton from '../components/DefaultButton';
 import ExerciseItemEdit from '../components/ExerciseItemEdit';
 import CustomModal from '../components/CustomModal';
+import uuid from 'uuid-random';
 
 const Container = styled.SafeAreaView`
     flex:1;
@@ -89,6 +90,17 @@ const Page = (props) => {
     const[modalReps, setModalReps] = useState('');
     const[modalLoad, setModalLoad] = useState('');
 
+    useEffect(()=>{
+
+        props.navigation.setParams({
+            workout:{ id,name,exercises},
+            addWorkout:props.addWorkout,
+            editWorkout:props.editWorkout
+        })
+
+
+    },[name,exercises]);
+
     const editExercise = (exercise)=> {
         setModalId(exercise.id);
         setModalName(exercise.name);
@@ -103,6 +115,53 @@ const Page = (props) => {
         let newExercises = [...exercises]
         newExercises = newExercises.filter(i=>i.id!=exercise.id);
         setExercises(newExercises);
+    }
+    const modalSave = () => {
+        let newExercises = [...exercises];
+
+        if(modalName == '' || modalMuscle == '' || modalSets == '' || modalReps == '' ){
+            alert('Preencha todas informações');
+            return;
+        }
+
+        if(modalId){
+            let index = newExercises.findIndex(i=>i.id==modalId);
+            if(index > -1){
+                newExercises[index].name = modalName;
+                newExercises[index].muscle = modalMuscle;
+                newExercises[index].sets = modalSets;
+                newExercises[index].reps = modalReps;
+                newExercises[index].load = modalLoad;
+            }
+        } else {
+                let ex = {
+                    id:uuid(),
+                    name:modalName,
+                    muscle:modalMuscle,
+                    sets:modalSets,
+                    reps:modalReps,
+                    load:modalLoad
+                };
+                newExercises.push(ex);
+            }
+        
+
+
+        setExercises(newExercises);
+        setModalVisible(false);
+    }
+    const resetModal= () => {
+        setModalId('');
+        setModalName('');
+        setModalMuscle('');
+        setModalSets('');
+        setModalReps('');
+        setModalLoad('');
+    }
+
+    const addExercise = () => {
+        resetModal();
+        setModalVisible(true);
     }
 
     return(
@@ -176,7 +235,7 @@ const Page = (props) => {
                         <ModalInput keyboardType="numeric" value={modalLoad} onChangeText={e=>setModalLoad(e)} />
                     </ModalExtraItem>
                 </ModalExtra>
-                <DefaultButton bgcolor="#6A5ACD">
+                <DefaultButton bgcolor="#6A5ACD" onPress={modalSave} underlayColor="transparent">
                     <ButtonText>Salvar</ButtonText>
                 </DefaultButton>
      
@@ -187,7 +246,7 @@ const Page = (props) => {
                 placeholder = "Digite o nome do treino"
             />
             <ExercisesArea>
-                <DefaultButton bgcolor="#6A5ACD">
+                <DefaultButton bgcolor="#6A5ACD" onPress={addExercise} underlayColor="transparent">
                     <ButtonText>Adicionar Exercicio</ButtonText>
                 </DefaultButton>
 
@@ -208,7 +267,7 @@ const Page = (props) => {
 }
 
 Page.navigationOptions = ({navigation}) =>{
-    let isEdit = (navigation.state.params && navigation.state.params.workout)?true:false;
+    let isEdit = (navigation.state.params && navigation.state.params.workout.id)?true:false;
 
     const SaveArea = styled.TouchableHighlight`
             width:30px;
@@ -221,9 +280,27 @@ Page.navigationOptions = ({navigation}) =>{
             height:25px;
         `;
 
+    const handleSave = () => {
+        if(navigation.state.params && navigation.state.params.workout){
+            let workout = navigation.state.params.workout;
+
+            if(workout.exercises.length > 0){
+                if(workout.id != ''){
+                    navigation.state.params.editWorkout(workout);
+                }else {
+                    workout.id = uuid();
+                    navigation.state.params.addWorkout(workout);
+                }
+                navigation.goBack();
+            } else {
+                alert("Você precisa ter pelo menos 1 exercicio");
+            }
+        }
+    }
+
     const SaveWorkoutButton = ()=> {
         return(
-            <SaveArea>
+            <SaveArea onPress={handleSave}>
                 <SaveImage source={require('../assets/check-black.png')} />
             </SaveArea>
 
@@ -250,7 +327,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+        addWorkout:(workout)=>dispatch({type:'ADD_WORKOUT' , payload:{workout}}),
+        editWorkout:(workout)=>dispatch({type:'EDIT_WORKOUT' , payload:{workout}})
     }
 }
 
